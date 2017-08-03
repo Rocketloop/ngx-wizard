@@ -2,8 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 
-@Pipe({ name: 'maybeAsync' })
-export class MaybeAsyncPipe extends AsyncPipe {
+@Pipe({ name: 'maybeAsync', pure: false })
+export class MaybeAsyncPipe extends AsyncPipe implements PipeTransform{
 
     transform<T>(obj: null): null;
     transform<T>(obj: undefined): undefined;

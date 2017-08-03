@@ -5,6 +5,7 @@ import {
     TestBed
 } from '@angular/core/testing';
 import { NgxWizardComponent } from './ngx-wizard.component';
+import { MaybeAsyncPipe } from '../pipes/maybe-async.pipe';
 
 describe('NgxWizardComponent', () => {
     let component: NgxWizardComponent;
@@ -13,7 +14,8 @@ describe('NgxWizardComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
-                NgxWizardComponent
+                NgxWizardComponent,
+                MaybeAsyncPipe
             ]
         });
         TestBed.compileComponents();
