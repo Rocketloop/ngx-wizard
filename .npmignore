@@ -22,3 +22,5 @@ typings
 typings.json
 vendor.ts
 webpack
+
+.idea

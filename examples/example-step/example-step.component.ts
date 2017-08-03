@@ -1,8 +1,8 @@
 import {
     Component, EventEmitter
 } from '@angular/core';
-import { WizardStep } from '../../src/models/wizard-step.model';
-import { NgxWizardStepComponent } from '../../src/ngx-wizard-step/ngx-wizard-step.component';
+import { WizardStep } from '../../index';
+import { NgxWizardStepComponent } from '../../index';
 
 @Component({
     selector: 'example-step',
