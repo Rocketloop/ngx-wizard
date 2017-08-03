@@ -1,6 +1,6 @@
 {
   "name": "@rocketloop/ngx-wizard",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Angular2+ configurable wizard component",
   "main": "./bundles/ngx-wizard.umd.js",
   "scripts": {
