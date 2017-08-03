@@ -1,5 +1,5 @@
 {
-  "name": "ngx-wizard",
+  "name": "@rocketloop/ngx-wizard",
   "version": "0.0.0",
   "description": "Angular2+ configurable wizard component",
   "main": "./bundles/ngx-wizard.umd.js",
@@ -30,10 +30,10 @@
   },
   "homepage": "https://github.com/Rocketloop/ngx-wizard#readme",
   "devDependencies": {
-    "angular-librarian": "1.0.0-beta.11",
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
+    "angular-librarian": "1.0.0-beta.11",
     "angular2-template-loader": "0.6.0",
     "awesome-typescript-loader": "^3.0.0",
     "codelyzer": "~2.0.0-beta.1",
@@ -74,7 +74,8 @@
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
     "webpack-merge": "^0.14.0",
-    "webpack-node-externals": "^1.5.4"
+    "webpack-node-externals": "^1.5.4",
+    "rollup-plugin-node-resolve": "3.0.0"
   },
   "module": "./ngx-wizard.es5.js",
   "es2015": "./ngx-wizard.js",
