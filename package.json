@@ -12,7 +12,8 @@
     "posttagVersion": "npm run build && npm publish dist",
     "prebuild": "rimraf dist out-tsc",
     "start": "webpack-dev-server --open --config ./webpack/webpack.dev.js",
-    "tagVersion": "np --no-publish"
+    "tagVersion": "np --no-publish",
+    "publish": "np"
   },
   "repository": {
     "type": "git",
@@ -89,5 +90,8 @@
     "core-js": "^2.4.1",
     "rxjs": "^5.0.1",
     "zone.js": "0.8.12"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
