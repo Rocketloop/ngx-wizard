@@ -1,0 +1,6 @@
+<ngx-wizard *ngIf="result === null && !canceled" [config]="exampleWizardConfig" (finish)="onFinish($event)" (cancel)="onCancel()"></ngx-wizard>
+
+<ng-container *ngIf="result !== null">
+    <h1>Result:</h1>
+    <pre>{{result | json}}</pre>
+</ng-container>
