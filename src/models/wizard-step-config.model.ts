@@ -1,7 +1,9 @@
+import { Observable } from 'rxjs/Observable';
+
 export interface WizardStepConfig {
     component: any;
-    title: string;
-    subtitle: string;
+    title: string | Observable<string>;
+    subtitle: string | Observable<string>;
     cancellable: boolean;
     waitForAction?: boolean;
     actionsVisible: boolean;

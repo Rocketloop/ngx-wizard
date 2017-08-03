@@ -1,12 +1,12 @@
 <div class="ngx-wizard__heading">
-    <h2 class="font-bold">{{title}}</h2>
-    <small class="font-bold">{{subtitle}}
+    <h2 class="font-bold">{{title | maybeAsync}}</h2>
+    <small class="font-bold">{{subtitle | maybeAsync}}
     </small>
 </div>
 <div class="ngx-wizard__content">
     <div #dynamicComponentContainer></div>
 </div>
 <div class="ngx-wizard__actions">
-    <button *ngIf="cancellable" type="button" class="btn btn-danger btn-outline" (click)="onCancel()">{{cancelLabel}}</button>
-    <button *ngIf="actionsVisible" [disabled]="waitForAction == true" type="button" class="btn btn-primary" (click)="onNext()">{{actionLabel}}</button>
+    <button *ngIf="cancellable" type="button" class="btn btn-danger btn-outline" (click)="onCancel()">{{cancelLabel | maybeAsync}}</button>
+    <button *ngIf="actionsVisible" [disabled]="waitForAction == true" type="button" class="btn btn-primary" (click)="onNext()">{{actionLabel | maybeAsync}}</button>
 </div>

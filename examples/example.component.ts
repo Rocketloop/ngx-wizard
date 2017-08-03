@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { WizardConfig } from '../index';
 import { ExampleStepComponent } from './example-step/example-step.component';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 @Component({
     selector: 'example-root',
@@ -16,7 +18,7 @@ export class ExampleComponent {
             'step1': {
                 component: ExampleStepComponent,
                 title: 'Step 1',
-                subtitle: 'This is the first step in the example wizard.',
+                subtitle: Observable.of('This is the first step in the example wizard.'),
                 cancellable: false,
                 actionsVisible: true,
                 next: 'step2'
@@ -31,7 +33,7 @@ export class ExampleComponent {
             }
         },
         nextLabel: 'Next',
-        finishLabel: 'Finish',
+        finishLabel: Observable.of('Finish'),
         cancelLabel: 'Cancel'
     };
 

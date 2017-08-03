@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgxWizardComponent } from './ngx-wizard/ngx-wizard.component';
+import { MaybeAsyncPipe } from './pipes/maybe-async.pipe';
 
 @NgModule({
     declarations: [
-        NgxWizardComponent
+        NgxWizardComponent,
+        MaybeAsyncPipe
     ],
     exports: [
         NgxWizardComponent

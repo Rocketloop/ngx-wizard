@@ -7,6 +7,7 @@ import {
 import { WizardStepConfig } from '../models/wizard-step-config.model';
 import { WizardConfig } from '../models/wizard-config.model';
 import { WizardStep } from '../models/wizard-step.model';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'ngx-wizard',
@@ -22,14 +23,14 @@ export class NgxWizardComponent implements OnInit {
     @ViewChild('dynamicComponentContainer', { read: ViewContainerRef }) dynamicComponentContainer: ViewContainerRef;
 
     currentComponent = null;
-    title: string;
-    subtitle: string;
+    title: string | Observable<string>;
+    subtitle: string | Observable<string>;
     cancellable: boolean;
     waitForAction: boolean;
 
     nextStepId: string;
-    actionLabel: string;
-    cancelLabel: string;
+    actionLabel: string | Observable<string>;
+    cancelLabel: string | Observable<string>;
     _currentStepConfig: WizardStepConfig;
     currentContext: any;
     actionsVisible = true;
