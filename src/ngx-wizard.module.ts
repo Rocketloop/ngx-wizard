@@ -9,7 +9,8 @@ import { MaybeAsyncPipe } from './pipes/maybe-async.pipe';
         MaybeAsyncPipe
     ],
     exports: [
-        NgxWizardComponent
+        NgxWizardComponent,
+        MaybeAsyncPipe
     ],
     imports: [
         CommonModule
