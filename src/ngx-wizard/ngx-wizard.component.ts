@@ -1,5 +1,5 @@
 import {
-    Component, ComponentFactoryResolver, ComponentRef, EventEmitter, HostBinding, Input, OnInit, Output,
+    Component, ComponentFactoryResolver, ComponentRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output,
     ReflectiveInjector,
     ViewChild,
     ViewContainerRef
@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
     styleUrls: ['./ngx-wizard.component.scss'],
     templateUrl: './ngx-wizard.component.html'
 })
-export class NgxWizardComponent implements OnInit {
+export class NgxWizardComponent implements OnInit, OnDestroy {
 
     @HostBinding('class.ngz-wizard') ngxWizardClass = true;
 
@@ -44,6 +44,12 @@ export class NgxWizardComponent implements OnInit {
 
     ngOnInit() {
         this.reset();
+    }
+
+    ngOnDestroy(): void {
+        if (this.currentComponent) {
+            this.currentComponent.destroy();
+        }
     }
 
     reset() {
