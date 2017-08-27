@@ -1,7 +1,7 @@
 {
     "angularCompilerOptions": {
         "annotateForClosureCompiler": true,
-        "flatModuleId": "ngx-wizard",
+        "flatModuleId": "@rocketloop/ngx-wizard",
         "flatModuleOutFile": "ngx-wizard.js",
         "genDir": "../out-tsc/lib-gen-dir/",
         "strictMetadataEmit": true,
