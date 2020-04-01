@@ -88,7 +88,7 @@ export class NgxWizardComponent implements OnInit, OnDestroy {
                 } else {
                     this.actionLabel = this.config.nextLabel;
                 }
-            }, 200);
+            });
         }
         this.cancelLabel = this.config.cancelLabel;
     }
