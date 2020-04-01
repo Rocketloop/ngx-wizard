@@ -1,10 +1,21 @@
 import {
-    Component, ComponentFactoryResolver, ComponentRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output,
+    Component,
+    ComponentFactoryResolver,
+    ComponentRef,
+    ElementRef,
+    EventEmitter,
+    HostBinding,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
     ReflectiveInjector,
+    Renderer2,
+    RendererStyleFlags2,
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { WizardStepConfig } from '../models/wizard-step-config.model';
+import { WizardStepButtonStyle, WizardStepConfig } from '../models/wizard-step-config.model';
 import { WizardConfig } from '../models/wizard-config.model';
 import { WizardStep } from '../models/wizard-step.model';
 import { Observable } from 'rxjs/Observable';
@@ -22,15 +33,19 @@ export class NgxWizardComponent implements OnInit, OnDestroy {
 
     @ViewChild('dynamicComponentContainer', { read: ViewContainerRef }) dynamicComponentContainer: ViewContainerRef;
 
+    @ViewChild('nextButton') nextButton: ElementRef;
+
     currentComponent = null;
     title: string | Observable<string>;
     subtitle: string | Observable<string>;
+    buttonStyle: WizardStepButtonStyle;
     cancellable: boolean;
     waitForAction: boolean;
 
     nextStepId: string;
     actionLabel: string | Observable<string>;
     cancelLabel: string | Observable<string>;
+
     _currentStepConfig: WizardStepConfig;
     currentContext: any;
     actionsVisible = true;
@@ -38,7 +53,7 @@ export class NgxWizardComponent implements OnInit, OnDestroy {
     @Output() finish: EventEmitter<any> = new EventEmitter();
     @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
 
-    constructor(private resolver: ComponentFactoryResolver) {
+    constructor(private resolver: ComponentFactoryResolver, private renderer: Renderer2) {
 
     }
 
@@ -62,11 +77,18 @@ export class NgxWizardComponent implements OnInit, OnDestroy {
 
     updateActionLabel() {
         if (this._currentStepConfig) {
-            if (this._currentStepConfig.next === null) {
-                this.actionLabel = this.config.finishLabel;
-            } else {
-                this.actionLabel = this.config.nextLabel;
-            }
+            setTimeout(() => {
+                if (this._currentStepConfig.buttonStyle) {
+                    this.actionLabel = this._currentStepConfig.buttonStyle.text;
+                    if (!this.waitForAction) {
+                        this.setButtonStyle();
+                    }
+                } else if (this._currentStepConfig.next === null) {
+                    this.actionLabel = this.config.finishLabel;
+                } else {
+                    this.actionLabel = this.config.nextLabel;
+                }
+            }, 200);
         }
         this.cancelLabel = this.config.cancelLabel;
     }
@@ -102,6 +124,20 @@ export class NgxWizardComponent implements OnInit, OnDestroy {
         this.cancel.next();
     }
 
+    setButtonStyle() {
+        if (this._currentStepConfig.buttonStyle) {
+            if (this._currentStepConfig.buttonStyle.textColor) {
+                this.nextButton.nativeElement.style.setProperty('color',
+                    `${this._currentStepConfig.buttonStyle.textColor}`, 'important');
+            }
+
+            if (this._currentStepConfig.buttonStyle.backgroundColor) {
+                this.nextButton.nativeElement.style.setProperty('background',
+                    `${this._currentStepConfig.buttonStyle.backgroundColor}`, 'important');
+            }
+        }
+    }
+
 
     @Input()
     set currentStepConfig(data: WizardStepConfig) {
@@ -115,6 +151,7 @@ export class NgxWizardComponent implements OnInit, OnDestroy {
         this.subtitle = data.subtitle;
         this.cancellable = data.cancellable;
         this.waitForAction = data.waitForAction;
+        this.buttonStyle = data.buttonStyle;
 
         // Inputs need to be in the following format to be resolved properly
         const inputProviders = [];
@@ -146,6 +183,9 @@ export class NgxWizardComponent implements OnInit, OnDestroy {
             });
             instance.processed.subscribe(processed => {
                 this.waitForAction = !processed;
+                if (!this.waitForAction) {
+                    this.setButtonStyle();
+                }
 
             });
             instance.contextChanged.subscribe(context => {

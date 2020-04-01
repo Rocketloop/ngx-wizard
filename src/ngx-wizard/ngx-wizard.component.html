@@ -8,5 +8,5 @@
 </div>
 <div class="ngx-wizard__actions">
     <button *ngIf="cancellable" type="button" class="btn btn-danger btn-outline" (click)="onCancel()">{{cancelLabel | maybeAsync}}</button>
-    <button *ngIf="actionsVisible" [disabled]="waitForAction == true" type="button" class="btn btn-primary" (click)="onNext()">{{actionLabel | maybeAsync}}</button>
+    <button #nextButton *ngIf="actionsVisible" [disabled]="waitForAction == true" type="button" class="btn btn-primary" [class.btn-cta]="!waitForAction" (click)="onNext()">{{actionLabel | maybeAsync}}</button>
 </div>
